@@ -24,12 +24,11 @@ def upload():
         tofile = request.form['tofile']
         file_format = file_.content_type.split('/')[1]
         file_name = file_.name
-        file_uid = file_.uid
         try:
             t = B2().uploadSource(upload_url,
                                   upload_authorization_token,
                                   file_.stream.read(), tofile,
-                                  file_format, file_name, file_uid)
+                                  file_format, file_name)
             return t
         except:
             return json.dumps({"msg": "上传失败", "status_code": -1})
@@ -109,8 +108,8 @@ class B2:
         t['s3ApiUrl'] = t_['s3ApiUrl']
         return t
 
-    def uploadSource(self, upload_url, upload_authorization_token, filedata, to_file, format_, file_name, file_uid):
-        b2_file_name = to_file + '1_' + file_name + '2_' + file_uid + '.' + format_
+    def uploadSource(self, upload_url, upload_authorization_token, filedata, to_file, format_, file_name):
+        b2_file_name = to_file + '1_' + file_name + '.' + format_
         content_type = "b2/x-auto"
         sha1_of_file_data = hashlib.sha1(filedata).hexdigest()
 
