@@ -23,7 +23,7 @@ def upload():
         upload_authorization_token = request.form['authorizationToken']
         tofile = request.form['tofile']
         file_format = file_.content_type.split('/')[1]
-        file_name = file_.filename
+        file_name = file_.filename.split('.')[0]
         try:
             t = B2().uploadSource(upload_url,
                                   upload_authorization_token,
