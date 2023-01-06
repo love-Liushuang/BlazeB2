@@ -109,7 +109,7 @@ class B2:
         return t
 
     def uploadSource(self, upload_url, upload_authorization_token, filedata, to_file, format_, file_name):
-        b2_file_name = to_file + '1_' + file_name + '.' + format_
+        b2_file_name = to_file + file_name + '.' + format_
         content_type = "b2/x-auto"
         sha1_of_file_data = hashlib.sha1(filedata).hexdigest()
 
